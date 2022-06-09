@@ -1,7 +1,5 @@
 package com.williamledo.api.domain;
 
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +24,5 @@ public class User {
 	@Column(unique = true)
 	private String email;
 	private String password;
-	
-
-	
-	
 	
 }
