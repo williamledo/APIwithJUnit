@@ -38,6 +38,9 @@ public class UsuarioResource {
 	@GetMapping
 	public ResponseEntity<List<UsuarioDTO>> findAll() {
 		
+		//Como essa lista será enviada para o client, para proteção não damos acesso direto a entitade
+		//por isso convertemos para um DTO
+		
 		List<Usuario> list = service.findAll();
 		List<UsuarioDTO> listDTO = list.stream().map(x -> mapper.map(x, UsuarioDTO.class)).collect(Collectors.toList());
 		//para cada elemento irá usar o mapper.map que irá transformar o objeto (x), na classe 

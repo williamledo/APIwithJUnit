@@ -11,6 +11,7 @@ import com.williamledo.api.domain.Usuario;
 import com.williamledo.api.domain.dto.UsuarioDTO;
 import com.williamledo.api.repositories.UsuarioRepository;
 import com.williamledo.api.services.UsuarioService;
+import com.williamledo.api.services.exceptions.DataIntegratyViolationException;
 import com.williamledo.api.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -41,10 +42,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		//Esse objeto será enviado para o servidor, e ele aceita a classe Usuario, então
 		//convertemos de DTO para Usuario
+		findByEmail(obj);
 		return repository.save(mapper.map(obj, Usuario.class));
 		
 	}
 	
-
+	private void findByEmail(UsuarioDTO obj) {
+		
+		Optional<Usuario> usuario = repository.findByEmail(obj.getEmail()); 
+		if (usuario.isPresent()) {
+			throw new DataIntegratyViolationException("Email já cadastrado no sistema");
+		}
+		
+	}
 	
 }
