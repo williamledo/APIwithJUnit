@@ -47,6 +47,19 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 	}
 	
+	@Override
+	public void delete(Integer id) {
+		findById(id);
+		repository.deleteById(id);
+		
+	}
+
+	
+	@Override
+	public Usuario update(UsuarioDTO obj) {
+		return repository.save(mapper.map(obj, Usuario.class));
+	}
+	
 	private void findByEmail(UsuarioDTO obj) {
 		
 		Optional<Usuario> usuario = repository.findByEmail(obj.getEmail()); 
@@ -55,5 +68,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 		
 	}
+
+	
+	
 	
 }
