@@ -7,7 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ApiWithJunitApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void main() {
+		
+		ApiWithJunitApplication.main(new String[] {});
+		
 	}
 
 }

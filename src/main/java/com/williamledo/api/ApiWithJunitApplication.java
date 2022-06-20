@@ -11,8 +11,6 @@ public class ApiWithJunitApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiWithJunitApplication.class, args);
 		
-		Usuario user = new Usuario(3, "William", "email@gmail.com", "12345");
-		
 	}
 
 }
