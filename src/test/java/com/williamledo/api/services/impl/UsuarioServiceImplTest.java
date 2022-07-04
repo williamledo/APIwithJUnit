@@ -1,5 +1,6 @@
 package com.williamledo.api.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -74,6 +75,25 @@ public class UsuarioServiceImplTest {
 			Assertions.assertEquals(ObjectNotFoundException.class, ex.getClass());
 			Assertions.assertEquals("Objeto não encontrado", ex.getMessage());
 		}
+		
+		
+	}
+	
+	@Test
+	void whenFindAllthenReturnAnListOfUsers() {
+		
+		Mockito.when(repository.findAll()).thenReturn(List.of(usuario));
+		
+		List<Usuario> response = service.findAll();
+		
+		Assertions.assertNotNull(response);
+		Assertions.assertEquals(1, response.size());
+		Assertions.assertEquals(Usuario.class, response.get(0).getClass());
+		
+		Assertions.assertEquals(ID, response.get(0).getId());
+		Assertions.assertEquals(NAME, response.get(0).getName());
+		Assertions.assertEquals(EMAIL, response.get(0).getEmail());
+		Assertions.assertEquals(PASSWORD, response.get(0).getPassword());
 		
 		
 	}
